@@ -12,35 +12,7 @@ class Book {
 
 class UI { // Methods
     static displayBooks(){ // Don't want to instantiate so we make static
-        const storedBooks = [ // Array of books
-            {
-                title: 'Book One',
-                author: 'John Doe',
-                genre: 'Horror'
-            },
-            {
-                title: 'Book Two',
-                author: 'Jane Doe',
-                genre: 'Thriller'
-            },
-            {
-                title: 'Book Three',
-                author: 'Jada Imanii',
-                genre: 'Adventure'
-            },
-            {
-                title: 'The Messenger',
-                author: 'Markus Zusack',
-                genre: 'Suspense/Thriller'
-            },
-            {
-                title: 'The Giver',
-                author: 'Jack Mac Mill',
-                genre: 'Action/Psychological'
-            }
-        ];
-
-        const books = storedBooks; // Acts as local storage for now
+        const books = Store.getBooks();
 
         books.forEach((book) => UI.addBookToList(book)); // Loops through array of books and adds them to list
     }
@@ -89,6 +61,38 @@ class UI { // Methods
 
 // ----- Store Class: Handle Storage(local storage)
 
+class Store {
+    static getBooks() {
+        let books;
+        if(localStorage.getItem('books') === null) {
+            books = [];
+        } else {
+            books = JSON.parse(localStorage.getItem('books')); // Parse string into array
+        }
+
+        return books;
+    }
+
+    static addBook(book) {
+        const books = Store.getBooks();
+
+        books.push(book);
+        localStorage.setItem('books', JSON.stringify(books)); // String back into array/object
+    }
+
+    static removeBook(genre) {
+        const books = Store.getBooks();
+
+        books.forEach((book, index) => {
+            if(book.genre === genre) {
+                books.splice(index, 1);
+            }
+        });
+
+        localStorage.setItem('books', JSON.stringify(books));
+    }
+}
+
 // ----- Event: Display Books
 
 document.addEventListener('DOMContentLoaded', UI.displayBooks);
@@ -113,6 +117,9 @@ document.querySelector('#bookForm').addEventListener('submit', (e) => {
 
         UI.addBookToList(book);
 
+        // Add book to store
+        Store.addBook(book);
+
         UI.showAlert('Book Added', 'success');
 
         UI.clearFields(); // Clears field
@@ -124,11 +131,14 @@ document.querySelector('#bookForm').addEventListener('submit', (e) => {
 
 // ----- Event: Remove a Book
 
-/* Event Propagation, we select something above like the book list and we target whatever is inside of it (bubbling/capturing)
+/* Event Propagation, we select something above like the book list and we target whatever is inside of it (bubbling/capturing?)
 Reason for this is that if we have multiple delete buttons so that would only select the single one at the top which is the first delete class */
 
 document.querySelector('#bookList').addEventListener('click', (e) => {
     UI.deleteBook(e.target);
+
+    // Remove book from store
+    Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
 
     UI.showAlert('Book Removed', 'success');
 });
