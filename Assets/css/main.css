@@ -12,8 +12,11 @@
     --primary-color-light: hsl(29, 57%, 60%);
     --primary-color-lighter: hsl(29, 57%, 90%);
     
-    --secondary-font-color: #fff;
 
+    --danger: hsl(10, 85%, 55%); /* Bright Red */
+    --success: hsl(120, 61%, 40%);  /* Forest Green */
+
+    --secondary-font-color: #fff;
     --border-color: hsl(0, 0%, 80%);
 }
 
@@ -145,4 +148,18 @@ tbody tr:hover {
     color: var(--secondary-font-color);
     background-color: var(--primary-color);
     text-decoration: none;
+}
+
+.alert {
+    padding: 15px;
+    font-size: 0.9rem;
+    color: var(--secondary-font-color);
+}
+
+.danger {
+    background-color: var(--danger);
+}
+
+.success {
+    background-color: var(--success);
 }

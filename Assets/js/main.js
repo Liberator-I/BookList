@@ -70,8 +70,14 @@ class UI { // Methods
 
     static showAlert(mesasge, className) {
         const div = document.createElement('div');
-        div.className = `alert alert${className}`;
-        div.appendChild(document.createTextNode());
+        div.className = `alert alert ${className}`;
+        div.appendChild(document.createTextNode(mesasge));
+
+        const container = document.querySelector('.form-wrapper');
+        const form = document.querySelector('#bookForm');
+        container.insertBefore(div, form); // Insert div before form
+
+        setTimeout(() => document.querySelector('.alert').remove(), 3000);
     }
 
     static clearFields() {
@@ -100,12 +106,14 @@ document.querySelector('#bookForm').addEventListener('submit', (e) => {
 
     // Validation
     if(title === '' || author === '' || genre === '') {
-        alert('no')
+        UI.showAlert('Please fill in all fields', 'danger');
     } else {
         // Instantiate book
         const book = new Book(title, author, genre); // Book Class up top
 
         UI.addBookToList(book);
+
+        UI.showAlert('Book Added', 'success');
 
         UI.clearFields(); // Clears field
     }
@@ -121,4 +129,6 @@ Reason for this is that if we have multiple delete buttons so that would only se
 
 document.querySelector('#bookList').addEventListener('click', (e) => {
     UI.deleteBook(e.target);
+
+    UI.showAlert('Book Removed', 'success');
 });
