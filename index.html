@@ -27,19 +27,23 @@
                 <label for="genre">Genre</label>
                 <input type="text" id="genre" class="genre-input">
             </div>
-            <input type="submit" value="Add Book" class="btn">
+            <div class="btn-wrapper">
+                <input type="submit" value="Add Book" class="btn">
+            </div>
         </form>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th class="title">Title</th>
-                    <th class="author">Author</th>
-                    <th class="genre">Genre</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody id="bookList"></tbody>
-        </table>
+        <div class="table-wrapper">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="title">Title</th>
+                        <th class="author">Author</th>
+                        <th class="genre">Genre</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="bookList"></tbody>
+            </table>
+        </div>
         </div>
     </main>
     <script src="Assets/js/main.js"></script>

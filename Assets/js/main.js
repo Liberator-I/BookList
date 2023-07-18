@@ -43,10 +43,13 @@ class UI { // Methods
     static showAlert(mesasge, className) {
         const div = document.createElement('div');
         div.className = `alert alert ${className}`;
+        div.classList.add('anim');
         div.appendChild(document.createTextNode(mesasge));
+        
 
         const container = document.querySelector('.form-wrapper');
         const form = document.querySelector('#bookForm');
+
         container.insertBefore(div, form); // Insert div before form
 
         setTimeout(() => document.querySelector('.alert').remove(), 3000);
