@@ -1,0 +1,148 @@
+*,
+*::before, 
+*::after {
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --primary-color: hsl(29, 57%, 46%);
+    --primary-color-darker: hsl(29, 57%, 40%);
+    
+    --primary-color-light: hsl(29, 57%, 60%);
+    --primary-color-lighter: hsl(29, 57%, 90%);
+    
+    --secondary-font-color: #fff;
+
+    --border-color: hsl(0, 0%, 80%);
+}
+
+/* ----- Container & Heading ----- */
+
+.container {
+    width: 100%;
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
+
+    display: flex;
+    justify-content: center;
+    /* background-color: pink; */
+}
+
+.book {
+    padding: 20px;
+}
+
+.heading {
+    font-size: 4rem;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.heading span {
+    color: var(--primary-color);
+}
+
+/* ----- Form & Inputs ----- */
+
+.form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* background-color: red; */
+}
+
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-wrapper label {
+    padding: 20px 0 10px 0;
+}
+
+.input-wrapper input {
+    padding: 10px;
+}
+
+
+.btn {
+    padding: 15px;
+    margin-top: 20px;
+
+    outline: none;
+    border: none;
+    cursor: pointer;
+
+    color: var(--secondary-font-color);
+    background-color: var(--primary-color);
+    transition: .2s ease;
+}
+
+.btn:hover {
+    background-color: var(--primary-color-darker);
+}
+
+/* ----- Table ----- */
+
+table {
+    margin-top: 40px;
+    border-top: 1px solid var(--border-color);
+    border-collapse: collapse;
+}
+
+thead tr th {
+    text-align: left;
+    padding: 10px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+thead tr th {
+    /* background-color: red; */
+    border-bottom: 2px solid var(--border-color);
+}
+
+tbody tr td {
+    font-size: 0.8rem;
+    padding: 10px 0px 20px 10px;
+    border-bottom: 1px solid var(--border-color);
+    margin-top: 10px;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: var(--primary-color-lighter);
+    transition: .2s ease;
+}
+
+tbody tr:hover {
+    background-color: var(--primary-color-light);
+    cursor: pointer;
+}
+
+.deleteBtn:hover {
+    background-color: var(--primary-color-darker);
+}
+
+/* tbody tr:nth-child(even):hover {
+    background-color: var(--border-color);
+} */
+
+.exit {
+    padding: 0 10px 0 0;
+}
+
+.title, .genre {
+    width: 130px;
+}
+
+.author {
+    width: 150px;
+}
+
+.deleteBtn {
+    padding: 5px;
+    color: var(--secondary-font-color);
+    background-color: var(--primary-color);
+    text-decoration: none;
+}
